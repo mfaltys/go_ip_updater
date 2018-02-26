@@ -1,0 +1,11 @@
+# go_ip_updater config
+configKey:     <key>
+configSecret:  <secret>
+configZoneId:  <zone_id>
+configTTL:     30
+configURL:     http://checkip.amazonaws.com
+
+# domain list
+testa.unixvoid.com
+testb.unixvoid.com
+testc.unixvoid.com
