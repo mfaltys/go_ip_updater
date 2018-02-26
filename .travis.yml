@@ -15,5 +15,6 @@ after_success:
   - curl -d sec=$BINDER_SEC -d key=unixvoid.pub https://cryo.unixvoid.com/getfile --output unixvoid.pub
   - curl -d sec=$BINDER_SEC -d key=unixvoid.sec https://cryo.unixvoid.com/getfile --output unixvoid.sec
   # upload binary to binder
+  - cp bin/go_ip_updater* bin/go_ip_updater-latest-linux-amd64
   - curl -i --form sec=$BINDER_SEC --form file=@`ls bin/go_ip_updater*` --form path=go_ip_updater/ https://cryo.unixvoid.com/upload
   - curl -i --form sec=$BINDER_SEC --form file=@`ls bin/go_ip_updater*` -form filename=go_ip_updater-latest-linux-amd64 --form path=go_ip_updater/ https://cryo.unixvoid.com/upload
