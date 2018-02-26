@@ -9,6 +9,7 @@ deps:
 	go get github.com/aws/aws-sdk-go/aws/credentials
 	go get github.com/aws/aws-sdk-go/aws/session
 	go get github.com/aws/aws-sdk-go/service/route53
+	go get github.com/unixvoid/glogger
 
 run:
 	go run \
