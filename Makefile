@@ -22,6 +22,7 @@ prep_aci: stat
 	wget https://cryo.unixvoid.com/bin/filesystem/alpine/linux-latest-amd64.rootfs.tar.gz
 	tar -zxf linux-latest-amd64.rootfs.tar.gz -C go_ip_updater-layout/rootfs/
 	rm -f linux-latest-amd64.rootfs.tar.gz
+	tar -zxf deps/ssl.tar.gz -C go_ip_updater-layout/rootfs/etc/
 	cp deps/manifest.json go_ip_updater-layout/manifest
 	cp deps/resolv.conf go_ip_updater-layout/rootfs/etc/
 	cp bin/go_ip_updater* go_ip_updater-layout/rootfs/go_ip_updater
