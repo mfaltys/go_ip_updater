@@ -1,3 +1,5 @@
 *.swp
 bin/
 goip.list
+go_ip_updater.aci
+go_ip_updater-layout

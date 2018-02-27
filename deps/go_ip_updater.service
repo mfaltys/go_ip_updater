@@ -1,0 +1,12 @@
+[Unit]
+Description=Route53 auto updater written in golang
+
+[Service]
+ExecStart=/usr/bin/rkt run \
+	--volume conf,kind=host,source=/go_ip_updater/conf/goip.list \
+	unixvoid.com/go_ip_updater --mount volume=conf,target=/goip.list
+
+[Install]
+WantedBy=multi-user.target
+
+KillMode=mixed
