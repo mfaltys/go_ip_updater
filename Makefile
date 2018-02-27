@@ -4,7 +4,7 @@ CGOR=CGO_ENABLED=0
 GIT_HASH=$(shell git rev-parse HEAD | head -c 10)
 
 
-deps:
+dependencies:
 	go get github.com/aws/aws-sdk-go/aws
 	go get github.com/aws/aws-sdk-go/aws/credentials
 	go get github.com/aws/aws-sdk-go/aws/session

@@ -5,16 +5,25 @@ go:
   - 1.7
 
 install:
-  - make deps
+  - make dependencies
 
 script:
   - make stat
 
 after_success:
+  # build aci
+  - make clean build_travis_aci
+  - mv go_ip_updater.aci go_ip_updater-latest-linux-amd64.aci
   # grab pub/pri keys
   - curl -d sec=$BINDER_SEC -d key=unixvoid.pub https://cryo.unixvoid.com/getfile --output unixvoid.pub
   - curl -d sec=$BINDER_SEC -d key=unixvoid.sec https://cryo.unixvoid.com/getfile --output unixvoid.sec
+  # sign aci
+  - cp deps/sign.sh . && chmod +x sign.sh
+  - ./sign.sh $GPG_SEC
   # upload binary to binder
   - cp bin/go_ip_updater* bin/go_ip_updater-latest-linux-amd64
   - curl -i --form sec=$BINDER_SEC --form file=@`ls bin/go_ip_updater*` --form path=go_ip_updater/ https://cryo.unixvoid.com/upload
   - curl -i --form sec=$BINDER_SEC --form file=@`ls bin/go_ip_updater*` -form filename=go_ip_updater-latest-linux-amd64 --form path=go_ip_updater/ https://cryo.unixvoid.com/upload
+  # upload aci to binder
+  - curl -i --form sec=$BINDER_SEC --form file=@go_ip_updater-latest-linux-amd64.aci --form path=rkt/go_ip_updater/ https://cryo.unixvoid.com/upload
+  - curl -i --form sec=$BINDER_SEC --form file=@go_ip_updater-latest-linux-amd64.aci.asc --form path=rkt/go_ip_updater/ https://cryo.unixvoid.com/upload
