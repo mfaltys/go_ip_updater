@@ -18,8 +18,10 @@ out [here](https://cryo.unixvoid.com/bin/rkt/go_ip_updater/) or build for yourse
 with:  
 `make dependencies`  
 `make build_aci`  
+
 If you are not interested in building the image yourself you can grab it with:  
 `rkt fetch unixvoid.com/go_ip_updater`.  
+
 To run go_ip_updater we recommend using systemd.  You can find our service file
 [here](https://github.com/unixvoid/go_ip_updater/blob/master/deps/go_ip_updater.service)  
 To set up to run all the time copy `go_ip_updater.service` to `/etc/systemd/system/`
@@ -27,6 +29,7 @@ and issue the following commands:
 `sudo systemctl daemon-reload` to get the service file loaded  
 `sudo systemctl start go_ip_updater` to start the service  
 `sudo systemctl enable go_ip_updater` to run the service on boot  
+
 before getting started with systemd make sure to follow our configuration guide below!
 
 
@@ -34,7 +37,7 @@ before getting started with systemd make sure to follow our configuration guide 
 go_ip_updater can take a couple command line arguments to get going quickly, but uses
 a configuration file for the rest.  
 
-**Command line arguments**:
+**Command line arguments**:  
   `-loglevel`: will set the loglevel for the updater (defaults to info)  
     possible choices are `debug`, `info`, `error`.  
   `-config`: path the the configuration (defaults to `goip.list`)
