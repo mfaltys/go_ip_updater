@@ -15,7 +15,8 @@ run:
 	go run \
 		go_ip_updater/go_ip_updater.go \
 		go_ip_updater/parselist.go \
-    -loglevel debug
+    	-loglevel debug \
+	  	-config goip.list.alt
 
 prep_aci: stat
 	mkdir -p go_ip_updater-layout/rootfs/etc/

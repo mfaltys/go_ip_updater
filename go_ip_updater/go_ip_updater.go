@@ -30,13 +30,15 @@ type Config struct {
 }
 
 var (
-	loglevel string
-	weight   = int64(1)
-	config   = Config{}
+	loglevel  string
+	configLoc string
+	weight    = int64(1)
+	config    = Config{}
 )
 
 func init() {
 	flag.StringVar(&loglevel, "loglevel", "info", loglevel)
+	flag.StringVar(&configLoc, "config", "goip.list", configLoc)
 }
 
 func main() {
@@ -46,7 +48,8 @@ func main() {
 	initLogger(loglevel)
 
 	// read in the config file
-	config := parseConfig("goip.list", config)
+	glogger.Info.Printf("using config '%s'\n", configLoc)
+	config := parseConfig(configLoc, config)
 
 	sess, err := session.NewSession(&aws.Config{
 		Region:      aws.String("us-west-2"),
